@@ -1,4 +1,4 @@
-class HumanoidMonster
+class HumanoidMonster < MonsterType
   PERKS = { hit_point: 1.1, attack: 1, defense: 1 }.freeze
 
   class << self
