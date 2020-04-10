@@ -10,12 +10,12 @@ class HumanoidMonster < MonsterType
       'hit point +10%, attack +1, defense +1'
     end
 
-    define_method :calculate_perks do |*args|
-      attributes = args.first
-      attributes[:hit_point] *= PERKS[:hit_point]
-      attributes[:attack] += PERKS[:attack]
-      attributes[:defense] += PERKS[:defense]
-      attributes
+    def calculate_perks(attributes)
+      perks_attributes = super
+      if attributes[:weapon]
+        perks_attributes = attributes[:weapon].calculate_perks(perks_attributes)
+      end
+      perks_attributes
     end
   end
 end
