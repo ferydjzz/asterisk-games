@@ -17,7 +17,7 @@ RSpec.describe Knife do
   end
 
   context 'calculate_perks' do
-    let(:attributes) { {attack: 10, defense: 10, critical: 0} }
+    let(:attributes) { { attack: 10, defense: 10, critical: 0 } }
 
     it 'should change attributes value based on perks' do
       original_attack_value = attributes[:attack]

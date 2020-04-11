@@ -7,7 +7,7 @@ class Weapon
     end
 
     def calculate_perks(attributes)
-      raise 'PERKS constant not implemented on child class' if self == Weapon
+      raise 'calculate_perks can only be called by child class' if self == Weapon
 
       self::PERKS.each do |attrib, value|
         attributes[attrib] += value
@@ -18,7 +18,7 @@ class Weapon
     def name
       raise 'name can only be called by child class' if self == Weapon
 
-      self.to_s
+      to_s
     end
   end
 end

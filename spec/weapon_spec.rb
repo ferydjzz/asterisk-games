@@ -14,15 +14,16 @@ RSpec.describe Weapon do
 
   context 'name' do
     it 'should raise error if called from parent class' do
-      expect{ Weapon.name }.to raise_error('name can only be called by child class')
+      expect { Weapon.name }.to raise_error('name can only be called by child class')
     end
   end
 
   context 'calculate_perks' do
-    let(:attributes) { {attack: 10, defense: 10, critical: 0} }
+    let(:attributes) { { attack: 10, defense: 10, critical: 0 } }
 
     it 'should raise error if called from parent class' do
-      expect{ Weapon.calculate_perks(attributes) }.to raise_error('PERKS constant not implemented on child class')
+      expect { Weapon.calculate_perks(attributes) }
+        .to raise_error('calculate_perks can only be called by child class')
     end
   end
 end

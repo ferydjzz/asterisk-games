@@ -6,7 +6,7 @@ RSpec.describe Axe do
     it 'should have attack +4 and defense -1' do
       perks = Axe::PERKS
       expect(perks[:attack]).to eq 4
-      expect(perks[:defense]).to eq -1
+      expect(perks[:defense]).to eq(-1)
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe Axe do
   end
 
   context 'calculate_perks' do
-    let(:attributes) { {attack: 10, defense: 10, critical: 0} }
+    let(:attributes) { { attack: 10, defense: 10, critical: 0 } }
 
     it 'should change attributes value based on perks' do
       original_attack_value = attributes[:attack]

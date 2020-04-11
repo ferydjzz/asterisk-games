@@ -5,9 +5,9 @@ class Character
     return attack if weapon != Knife
     return if critical.nil?
 
-    if rand(100) <= critical
-      attack * 2
-    end
+    return attack * 2 if rand(100) <= critical
+
+    attack
   end
 
   def informations
@@ -32,10 +32,9 @@ class Character
     }
   end
 
-  def set_attributes(new_attributes)
+  def change_attributes(new_attributes)
     new_attributes.each do |attrib, value|
       send("#{attrib}=", value)
     end
   end
-
 end

@@ -6,7 +6,7 @@ class Monster < Character
   def initialize(name, monster_type)
     @name = name
     @monster_type = monster_type
-    set_attributes(ORIGINAL_ATTRIBUTES)
+    change_attributes(ORIGINAL_ATTRIBUTES)
     randomize_weapon
     calculate_monster_perks
   end
@@ -20,15 +20,15 @@ class Monster < Character
   end
 
   def basic_attributes
-    super.merge({
+    super.merge(
       monster_type: monster_type,
       description: monster_type.description,
       perks_description: monster_type.perks_descrition
-    })
+    )
   end
 
   def calculate_monster_perks
     perks_attributes = monster_type.calculate_perks(battle_attributes)
-    set_attributes(perks_attributes)
+    change_attributes(perks_attributes)
   end
 end

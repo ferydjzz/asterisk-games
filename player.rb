@@ -4,7 +4,7 @@ class Player < Character
   def initialize(name, weapon)
     @name = name
     @weapon = weapon
-    set_attributes(ORIGINAL_ATTRIBUTES)
+    change_attributes(ORIGINAL_ATTRIBUTES)
     calculate_weapon_perks
   end
 
@@ -14,6 +14,6 @@ class Player < Character
     return if weapon.nil?
 
     perks_attributes = weapon.calculate_perks(battle_attributes)
-    set_attributes(perks_attributes)
+    change_attributes(perks_attributes)
   end
 end

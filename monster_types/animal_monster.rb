@@ -3,7 +3,8 @@ class AnimalMonster < MonsterType
 
   class << self
     def description
-      'Corrupted animals turned into monster, retaining their body but also has more dangerous claws and fangs'
+      'Corrupted animals turned into monster,
+      retaining their body but also has more dangerous claws and fangs'
     end
 
     def perks_descrition
