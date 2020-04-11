@@ -7,8 +7,7 @@ RSpec.describe Weapon do
   context 'descendants' do
     it 'should return [Axe, Knife, Sword]' do
       descendants = Weapon.descendants
-      expect(descendants).to eq [Axe, Knife, Sword]
-      expect(descendants - [Axe, Knife, Sword]).to be_empty
+      expect([Axe, Knife, Sword] - descendants).to be_empty
     end
   end
 
