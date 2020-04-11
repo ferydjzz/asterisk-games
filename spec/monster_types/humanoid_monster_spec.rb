@@ -31,13 +31,13 @@ RSpec.describe HumanoidMonster do
 
   context 'calculate_perks' do
     let(:attributes) { { hit_point: 30, attack: 3, defense: 0, critical: 0 } }
+    let!(:original_hit_point_value) { attributes[:hit_point] }
+    let!(:original_attack_value) { attributes[:attack] }
+    let!(:original_defense_value) { attributes[:defense] }
+    let!(:original_critical_value) { attributes[:critical] }
 
     context 'without weapon' do
       it 'should change attributes value based on monster perks' do
-        original_hit_point_value = attributes[:hit_point]
-        original_attack_value = attributes[:attack]
-        original_defense_value = attributes[:defense]
-
         perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
         expect(perks_attributes[:hit_point])
@@ -50,26 +50,19 @@ RSpec.describe HumanoidMonster do
     end
 
     context 'with weapon' do
-      before(:each) do
-        @original_hit_point_value = attributes[:hit_point]
-        @original_attack_value = attributes[:attack]
-        @original_defense_value = attributes[:defense]
-        @original_critical_value = attributes[:critical]
-      end
-
       context 'axe' do
         it 'should change attributes value based on monster perks + Axe perks' do
           attributes[:weapon] = Axe
           perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
           expect(perks_attributes[:hit_point])
-            .to eq @original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
+            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
           expect(perks_attributes[:attack])
-            .to eq @original_attack_value + HumanoidMonster::PERKS[:attack] + Axe::PERKS[:attack]
+            .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Axe::PERKS[:attack]
           expect(perks_attributes[:defense])
-            .to eq @original_defense_value + HumanoidMonster::PERKS[:defense] + Axe::PERKS[:defense]
+            .to eq original_defense_value + HumanoidMonster::PERKS[:defense] + Axe::PERKS[:defense]
           expect(perks_attributes[:critical])
-            .to eq @original_critical_value
+            .to eq original_critical_value
         end
       end
 
@@ -79,13 +72,13 @@ RSpec.describe HumanoidMonster do
           perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
           expect(perks_attributes[:hit_point])
-            .to eq @original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
+            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
           expect(perks_attributes[:attack])
-            .to eq @original_attack_value + HumanoidMonster::PERKS[:attack] + Knife::PERKS[:attack]
+            .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Knife::PERKS[:attack]
           expect(perks_attributes[:defense])
-            .to eq @original_defense_value + HumanoidMonster::PERKS[:defense]
+            .to eq original_defense_value + HumanoidMonster::PERKS[:defense]
           expect(perks_attributes[:critical])
-            .to eq @original_critical_value + Knife::PERKS[:critical]
+            .to eq original_critical_value + Knife::PERKS[:critical]
         end
       end
 
@@ -95,13 +88,13 @@ RSpec.describe HumanoidMonster do
           perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
           expect(perks_attributes[:hit_point])
-            .to eq @original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
+            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
           expect(perks_attributes[:attack])
-            .to eq @original_attack_value + HumanoidMonster::PERKS[:attack] + Sword::PERKS[:attack]
+            .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Sword::PERKS[:attack]
           expect(perks_attributes[:defense])
-            .to eq @original_defense_value + HumanoidMonster::PERKS[:defense] + Sword::PERKS[:defense]
+            .to eq original_defense_value + HumanoidMonster::PERKS[:defense] + Sword::PERKS[:defense]
           expect(perks_attributes[:critical])
-            .to eq @original_critical_value
+            .to eq original_critical_value
         end
       end
     end
