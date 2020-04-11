@@ -1,13 +1,16 @@
 class Character
   attr_accessor :name, :hit_point, :attack, :defense, :weapon, :critical
 
+  def initialize
+    raise 'Cannot initialize an abstract Character class'
+  end
+
   def attack!
     return attack if weapon != Knife
     return if critical.nil?
 
-    return attack * 2 if rand(100) <= critical
-
-    attack
+    multiplier = rand(100) <= critical ? 2 : 1
+    attack * multiplier
   end
 
   def informations
