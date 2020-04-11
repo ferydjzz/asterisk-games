@@ -1,5 +1,9 @@
 class MonsterType
   class << self
+    def descendants
+      ObjectSpace.each_object(Class).select { |klass| klass < self }
+    end
+
     def calculate_perks(attributes)
       raise 'calculate_perks can only be called by child class' if self == MonsterType
 
