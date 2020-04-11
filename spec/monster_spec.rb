@@ -18,24 +18,15 @@ RSpec.describe Monster do
   end
 
   context 'initialize' do
-    let(:original_hit_point_value) { Monster::ORIGINAL_ATTRIBUTES[:hit_point] }
-    let(:original_attack_value) { Monster::ORIGINAL_ATTRIBUTES[:attack] }
-    let(:original_defense_value) { Monster::ORIGINAL_ATTRIBUTES[:defense] }
-    let(:original_critical_value) { Monster::ORIGINAL_ATTRIBUTES[:critical] }
-
     context 'Golem' do
       it 'should add golem perks to original monster attributes' do
         golem = Monster.new('Melog', Golem)
         monster_attributes = golem.informations
 
-        expect(monster_attributes[:hit_point])
-          .to eq original_hit_point_value * Golem::PERKS[:hit_point]
-        expect(monster_attributes[:attack])
-          .to eq original_attack_value
-        expect(monster_attributes[:defense])
-          .to eq original_defense_value + Golem::PERKS[:defense]
-        expect(monster_attributes[:critical])
-          .to eq original_critical_value
+        expect(monster_attributes[:hit_point]).to eq 36
+        expect(monster_attributes[:attack]).to eq 3
+        expect(monster_attributes[:defense]).to eq 2
+        expect(monster_attributes[:critical]).to eq 0
       end
     end
 
@@ -44,14 +35,10 @@ RSpec.describe Monster do
         animal_monster = Monster.new('Retsnom Lamina', AnimalMonster)
         monster_attributes = animal_monster.informations
 
-        expect(monster_attributes[:hit_point])
-          .to eq original_hit_point_value * AnimalMonster::PERKS[:hit_point]
-        expect(monster_attributes[:attack])
-          .to eq original_attack_value + AnimalMonster::PERKS[:attack]
-        expect(monster_attributes[:defense])
-          .to eq original_defense_value
-        expect(monster_attributes[:critical])
-          .to eq original_critical_value
+        expect(monster_attributes[:hit_point]).to eq 33
+        expect(monster_attributes[:attack]).to eq 4
+        expect(monster_attributes[:defense]).to eq 0
+        expect(monster_attributes[:critical]).to eq 0
       end
     end
 
@@ -62,14 +49,10 @@ RSpec.describe Monster do
           humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
           monster_attributes = humanoid_monster.informations
 
-          expect(monster_attributes[:hit_point])
-            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-          expect(monster_attributes[:attack])
-            .to eq original_attack_value + HumanoidMonster::PERKS[:attack]
-          expect(monster_attributes[:defense])
-            .to eq original_defense_value + HumanoidMonster::PERKS[:defense]
-          expect(monster_attributes[:critical])
-            .to eq original_critical_value
+          expect(monster_attributes[:hit_point]).to eq 33
+          expect(monster_attributes[:attack]).to eq 4
+          expect(monster_attributes[:defense]).to eq 1
+          expect(monster_attributes[:critical]).to eq 0
         end
       end
 
@@ -80,14 +63,10 @@ RSpec.describe Monster do
             humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
             monster_attributes = humanoid_monster.informations
 
-            expect(monster_attributes[:hit_point])
-            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-            expect(monster_attributes[:attack])
-              .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Axe::PERKS[:attack]
-            expect(monster_attributes[:defense])
-              .to eq original_defense_value + HumanoidMonster::PERKS[:defense] + Axe::PERKS[:defense]
-            expect(monster_attributes[:critical])
-              .to eq original_critical_value
+            expect(monster_attributes[:hit_point]).to eq 33
+            expect(monster_attributes[:attack]).to eq 8
+            expect(monster_attributes[:defense]).to eq 0
+            expect(monster_attributes[:critical]).to eq 0
           end
         end
 
@@ -97,14 +76,10 @@ RSpec.describe Monster do
             humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
             monster_attributes = humanoid_monster.informations
 
-            expect(monster_attributes[:hit_point])
-            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-            expect(monster_attributes[:attack])
-              .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Knife::PERKS[:attack]
-            expect(monster_attributes[:defense])
-              .to eq original_defense_value + HumanoidMonster::PERKS[:defense]
-            expect(monster_attributes[:critical])
-              .to eq original_critical_value + Knife::PERKS[:critical]
+            expect(monster_attributes[:hit_point]).to eq 33
+            expect(monster_attributes[:attack]).to eq 5
+            expect(monster_attributes[:defense]).to eq 1
+            expect(monster_attributes[:critical]).to eq 30
           end
         end
 
@@ -114,14 +89,10 @@ RSpec.describe Monster do
             humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
             monster_attributes = humanoid_monster.informations
 
-            expect(monster_attributes[:hit_point])
-            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-            expect(monster_attributes[:attack])
-              .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Sword::PERKS[:attack]
-            expect(monster_attributes[:defense])
-              .to eq original_defense_value + HumanoidMonster::PERKS[:defense] + Sword::PERKS[:defense]
-            expect(monster_attributes[:critical])
-              .to eq original_critical_value
+            expect(monster_attributes[:hit_point]).to eq 33
+            expect(monster_attributes[:attack]).to eq 6
+            expect(monster_attributes[:defense]).to eq 3
+            expect(monster_attributes[:critical]).to eq 0
           end
         end
       end

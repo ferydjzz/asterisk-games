@@ -4,9 +4,8 @@ require_relative '../../monster_types/animal_monster'
 RSpec.describe AnimalMonster do
   context 'PERKS' do
     it 'should have hit point +10% and attack +1' do
-      perks = AnimalMonster::PERKS
-      expect(perks[:hit_point]).to eq 1.1
-      expect(perks[:attack]).to eq 1
+      expect(AnimalMonster::PERKS[:hit_point]).to eq 1.1
+      expect(AnimalMonster::PERKS[:attack]).to eq 1
     end
   end
 
@@ -29,15 +28,10 @@ RSpec.describe AnimalMonster do
     let(:attributes) { { hit_point: 30, attack: 3, defense: 0 } }
 
     it 'should change attributes value based on perks' do
-      original_hit_point_value = attributes[:hit_point]
-      original_attack_value = attributes[:attack]
-
       perks_attributes = AnimalMonster.calculate_perks(attributes)
 
-      expect(perks_attributes[:hit_point])
-        .to eq original_hit_point_value * AnimalMonster::PERKS[:hit_point]
-      expect(perks_attributes[:attack])
-        .to eq original_attack_value + AnimalMonster::PERKS[:attack]
+      expect(perks_attributes[:hit_point]).to eq 33
+      expect(perks_attributes[:attack]).to eq 4
     end
   end
 end

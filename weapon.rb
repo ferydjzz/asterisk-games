@@ -9,6 +9,9 @@ class Weapon
     def calculate_perks(attributes)
       raise 'calculate_perks can only be called by child class' if self == Weapon
 
+      # this will prevent mutable attributes being changed
+      attributes = attributes.dup
+
       self::PERKS.each do |attrib, value|
         attributes[attrib] += value
       end

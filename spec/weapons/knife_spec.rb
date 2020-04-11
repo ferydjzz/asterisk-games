@@ -4,9 +4,8 @@ require_relative '../../weapons/knife'
 RSpec.describe Knife do
   context 'PERKS' do
     it 'should have attack +1 and critical 30%' do
-      perks = Knife::PERKS
-      expect(perks[:attack]).to eq 1
-      expect(perks[:critical]).to eq 30
+      expect(Knife::PERKS[:attack]).to eq 1
+      expect(Knife::PERKS[:critical]).to eq 30
     end
   end
 
@@ -20,13 +19,10 @@ RSpec.describe Knife do
     let(:attributes) { { attack: 10, defense: 10, critical: 0 } }
 
     it 'should change attributes value based on perks' do
-      original_attack_value = attributes[:attack]
-      original_critical_value = attributes[:critical]
-
       perks_attributes = Knife.calculate_perks(attributes)
 
-      expect(perks_attributes[:attack]).to eq original_attack_value + Knife::PERKS[:attack]
-      expect(perks_attributes[:critical]).to eq original_critical_value + Knife::PERKS[:critical]
+      expect(perks_attributes[:attack]).to eq 11
+      expect(perks_attributes[:critical]).to eq 30
     end
   end
 end

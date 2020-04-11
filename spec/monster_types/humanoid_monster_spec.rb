@@ -8,10 +8,9 @@ require_relative '../../weapons/sword'
 RSpec.describe HumanoidMonster do
   context 'PERKS' do
     it 'should have hit point +10%, attack +1 and defense +1' do
-      perks = HumanoidMonster::PERKS
-      expect(perks[:hit_point]).to eq 1.1
-      expect(perks[:attack]).to eq 1
-      expect(perks[:defense]).to eq 1
+      expect(HumanoidMonster::PERKS[:hit_point]).to eq 1.1
+      expect(HumanoidMonster::PERKS[:attack]).to eq 1
+      expect(HumanoidMonster::PERKS[:defense]).to eq 1
     end
   end
 
@@ -31,21 +30,14 @@ RSpec.describe HumanoidMonster do
 
   context 'calculate_perks' do
     let(:attributes) { { hit_point: 30, attack: 3, defense: 0, critical: 0 } }
-    let!(:original_hit_point_value) { attributes[:hit_point] }
-    let!(:original_attack_value) { attributes[:attack] }
-    let!(:original_defense_value) { attributes[:defense] }
-    let!(:original_critical_value) { attributes[:critical] }
 
     context 'without weapon' do
       it 'should change attributes value based on monster perks' do
         perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
-        expect(perks_attributes[:hit_point])
-          .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-        expect(perks_attributes[:attack])
-          .to eq original_attack_value + HumanoidMonster::PERKS[:attack]
-        expect(perks_attributes[:defense])
-          .to eq original_defense_value + HumanoidMonster::PERKS[:defense]
+        expect(perks_attributes[:hit_point]).to eq 33
+        expect(perks_attributes[:attack]).to eq 4
+        expect(perks_attributes[:defense]).to eq 1
       end
     end
 
@@ -55,14 +47,8 @@ RSpec.describe HumanoidMonster do
           attributes[:weapon] = Axe
           perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
-          expect(perks_attributes[:hit_point])
-            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-          expect(perks_attributes[:attack])
-            .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Axe::PERKS[:attack]
-          expect(perks_attributes[:defense])
-            .to eq original_defense_value + HumanoidMonster::PERKS[:defense] + Axe::PERKS[:defense]
-          expect(perks_attributes[:critical])
-            .to eq original_critical_value
+          expect(perks_attributes[:attack]).to eq 8
+          expect(perks_attributes[:defense]).to eq 0
         end
       end
 
@@ -71,14 +57,8 @@ RSpec.describe HumanoidMonster do
           attributes[:weapon] = Knife
           perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
-          expect(perks_attributes[:hit_point])
-            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-          expect(perks_attributes[:attack])
-            .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Knife::PERKS[:attack]
-          expect(perks_attributes[:defense])
-            .to eq original_defense_value + HumanoidMonster::PERKS[:defense]
-          expect(perks_attributes[:critical])
-            .to eq original_critical_value + Knife::PERKS[:critical]
+          expect(perks_attributes[:attack]).to eq 5
+          expect(perks_attributes[:critical]).to eq 30
         end
       end
 
@@ -87,14 +67,8 @@ RSpec.describe HumanoidMonster do
           attributes[:weapon] = Sword
           perks_attributes = HumanoidMonster.calculate_perks(attributes)
 
-          expect(perks_attributes[:hit_point])
-            .to eq original_hit_point_value * HumanoidMonster::PERKS[:hit_point]
-          expect(perks_attributes[:attack])
-            .to eq original_attack_value + HumanoidMonster::PERKS[:attack] + Sword::PERKS[:attack]
-          expect(perks_attributes[:defense])
-            .to eq original_defense_value + HumanoidMonster::PERKS[:defense] + Sword::PERKS[:defense]
-          expect(perks_attributes[:critical])
-            .to eq original_critical_value
+          expect(perks_attributes[:attack]).to eq 6
+          expect(perks_attributes[:defense]).to eq 3
         end
       end
     end

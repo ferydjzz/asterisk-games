@@ -23,24 +23,13 @@ RSpec.describe Player do
     end
 
     context 'with weapon' do
-      let(:original_hit_point_value) { Player::ORIGINAL_ATTRIBUTES[:hit_point] }
-      let(:original_attack_value) { Player::ORIGINAL_ATTRIBUTES[:attack] }
-      let(:original_defense_value) { Player::ORIGINAL_ATTRIBUTES[:defense] }
-      let(:original_critical_value) { Player::ORIGINAL_ATTRIBUTES[:critical] }
-
       context 'axe' do
         it 'should change attributes value based Axe perks' do
           player_number_2 = Player.new('Number 2', Axe)
           player_attributes = player_number_2.informations
 
-          expect(player_attributes[:hit_point])
-            .to eq original_hit_point_value
-          expect(player_attributes[:attack])
-            .to eq original_attack_value + Axe::PERKS[:attack]
-          expect(player_attributes[:defense])
-            .to eq original_defense_value + Axe::PERKS[:defense]
-          expect(player_attributes[:critical])
-            .to eq original_critical_value
+          expect(player_attributes[:attack]).to eq 9
+          expect(player_attributes[:defense]).to eq 0
         end
       end
 
@@ -49,14 +38,8 @@ RSpec.describe Player do
           player_number_3 = Player.new('Number 3', Knife)
           player_attributes = player_number_3.informations
 
-          expect(player_attributes[:hit_point])
-            .to eq original_hit_point_value
-          expect(player_attributes[:attack])
-            .to eq original_attack_value + Knife::PERKS[:attack]
-          expect(player_attributes[:defense])
-            .to eq original_defense_value
-          expect(player_attributes[:critical])
-            .to eq original_critical_value + Knife::PERKS[:critical]
+          expect(player_attributes[:attack]).to eq 6
+          expect(player_attributes[:critical]).to eq 30
         end
       end
 
@@ -65,14 +48,8 @@ RSpec.describe Player do
           player_number_4 = Player.new('Number 4', Sword)
           player_attributes = player_number_4.informations
 
-          expect(player_attributes[:hit_point])
-            .to eq original_hit_point_value
-          expect(player_attributes[:attack])
-            .to eq original_attack_value + Sword::PERKS[:attack]
-          expect(player_attributes[:defense])
-            .to eq original_defense_value + Sword::PERKS[:defense]
-          expect(player_attributes[:critical])
-            .to eq original_critical_value
+          expect(player_attributes[:attack]).to eq 7
+          expect(player_attributes[:defense]).to eq 3
         end
       end
     end
