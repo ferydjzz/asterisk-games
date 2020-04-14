@@ -21,7 +21,7 @@ RSpec.describe Monster do
     context 'Golem' do
       it 'should add golem perks to original monster attributes' do
         golem = Monster.new('Melog', Golem)
-        monster_attributes = golem.informations
+        monster_attributes = golem.attributes
 
         expect(monster_attributes[:hit_point]).to eq 36
         expect(monster_attributes[:attack]).to eq 3
@@ -33,7 +33,7 @@ RSpec.describe Monster do
     context 'AnimalMonster' do
       it 'should add animal monster perks to original monster attributes' do
         animal_monster = Monster.new('Retsnom Lamina', AnimalMonster)
-        monster_attributes = animal_monster.informations
+        monster_attributes = animal_monster.attributes
 
         expect(monster_attributes[:hit_point]).to eq 33
         expect(monster_attributes[:attack]).to eq 4
@@ -47,7 +47,7 @@ RSpec.describe Monster do
         it 'should add humanoid monster perks to original monster attributes' do
           allow_any_instance_of(Monster).to receive(:randomize_weapon) { nil }
           humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
-          monster_attributes = humanoid_monster.informations
+          monster_attributes = humanoid_monster.attributes
 
           expect(monster_attributes[:hit_point]).to eq 33
           expect(monster_attributes[:attack]).to eq 4
@@ -61,7 +61,7 @@ RSpec.describe Monster do
           it 'should add humanoid monster perks to original monster attributes + Axe perks' do
             allow_any_instance_of(Monster).to receive(:randomize_weapon) { |monster| monster.weapon = Axe }
             humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
-            monster_attributes = humanoid_monster.informations
+            monster_attributes = humanoid_monster.attributes
 
             expect(monster_attributes[:hit_point]).to eq 33
             expect(monster_attributes[:attack]).to eq 8
@@ -74,7 +74,7 @@ RSpec.describe Monster do
           it 'should add humanoid monster perks to original monster attributes + Knife perks' do
             allow_any_instance_of(Monster).to receive(:randomize_weapon) { |monster| monster.weapon = Knife }
             humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
-            monster_attributes = humanoid_monster.informations
+            monster_attributes = humanoid_monster.attributes
 
             expect(monster_attributes[:hit_point]).to eq 33
             expect(monster_attributes[:attack]).to eq 5
@@ -87,7 +87,7 @@ RSpec.describe Monster do
           it 'should add humanoid monster perks to original monster attributes + Sword perks' do
             allow_any_instance_of(Monster).to receive(:randomize_weapon) { |monster| monster.weapon = Sword }
             humanoid_monster = Monster.new('Retsnom Lamina', HumanoidMonster)
-            monster_attributes = humanoid_monster.informations
+            monster_attributes = humanoid_monster.attributes
 
             expect(monster_attributes[:hit_point]).to eq 33
             expect(monster_attributes[:attack]).to eq 6

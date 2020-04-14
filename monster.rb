@@ -1,5 +1,6 @@
 class Monster < Character
   ORIGINAL_ATTRIBUTES = { hit_point: 30, attack: 3, defense: 0, critical: 0 }.freeze
+  NAMES = RandomNameGenerator.new(RandomNameGenerator::GOBLIN)
 
   attr_accessor :monster_type
 

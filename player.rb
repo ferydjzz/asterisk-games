@@ -1,5 +1,6 @@
 class Player < Character
   ORIGINAL_ATTRIBUTES = { hit_point: 20, attack: 5, defense: 1, critical: 0 }.freeze
+  NAMES = RandomNameGenerator.new(RandomNameGenerator::ROMAN)
 
   def initialize(name, weapon)
     @name = name
